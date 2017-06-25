@@ -14,8 +14,11 @@ import java.util.List;
 @Mapper
 public interface UrlMapper {
 
-    @Select("select * from url where url like concat('%',#{url},'%')")
-    public List<UrlEntity> getUrlListByUrl(@Param("url")String url);
+    @Select("select * from url where url like concat('%',#{url},'%') and remark like concat('%',#{remark},'%') order by createTime desc limit 100")
+    public List<UrlEntity> getUrlListByUrl(@Param("url")String url,@Param("remark")String remark);
+
+    @Select("select * from url  order by createTime desc limit 100")
+    public List<UrlEntity> getUrlTop10();
 
     @Insert("insert into url (url,remark,createTime) values (#{urlEntity.url},#{urlEntity.remark},#{urlEntity.createTime})")
     public void insertUrl(@Param("urlEntity") UrlEntity urlEntity);

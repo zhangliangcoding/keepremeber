@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{bootstrap/css/bootstrap-responsive.min.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+    <title>KeepRemeber</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Remeber Your Url</h3>
+        </div>
+        <div>
+            <input class="form-control input-lg" type="text" placeholder="input your url"/>
+            <input class="form-control input-lg" type="text" placeholder="the remark of url"/>
+            <br/>
+            <input class="btn btn-default" type="button" value="Search" id="search_url"/>
+            <input class="btn btn-default" type="submit" value="Submit" id="insert_url"/>
+        </div>
+        <br/>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-field="url">Url</th>
+                    <th data-field="remark">Remark</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="urlEntity:${urlList}">
+                    <td th:text="${urlEntity.url}"></td>
+                    <td th:text="${urlEntity.remark}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
